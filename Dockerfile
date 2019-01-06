@@ -1,6 +1,5 @@
 FROM node:10.1.0
 
-RUN mkdir -p /faredge/edge-analytics-engine
 WORKDIR /faredge/RUN mkdir -p /faredge/edge-analytics-engine
 
 COPY package.json /faredge/edge-analytics-engine

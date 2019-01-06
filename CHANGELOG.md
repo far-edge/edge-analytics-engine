@@ -15,4 +15,3 @@
 * Discover analytics instances.
 * Start an analytics instance.
 * Stop an anelytics instance.
-
