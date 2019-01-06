@@ -59,6 +59,8 @@ const _startAnalyticsProcessor = (aiid, analyticsProcessorManifest) => {
   }).then(({ dataSources, dataSink, analyticsProcessorDefinition }) => {
     // Put together the system properties.
     let properties = '';
+    // Put the edge gateway ID to the system property faredge.edgegateway.id.
+    properties = `${ properties } -Dfaredge.edgegateway.id=${ process.env.EDGE_GATEWAY_ID }`;
     // Put the analytics processor ID to the system property faredge.processor.id.
     properties = `${ properties } -Dfaredge.processor.id=${ analyticsProcessorManifest._id }`;
     // Put the data sink ID to the system property faredge.sink.id.

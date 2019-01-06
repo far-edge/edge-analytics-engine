@@ -2,6 +2,13 @@
 
 **NOTE:** The project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+##### [Unreleased]
+
+**CHANGED**
+
+* Pass edge gateway ID to processor.
+
+
 ##### [1.0.0] - 2019-01-06
 
 **ADDED**

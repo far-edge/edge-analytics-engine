@@ -3,6 +3,7 @@ const validations = require('../core/common/validations');
 const env = validations.object({
   API_BASE_URL: validations.string().uri().required(),
   DATA_ROUTER_AND_PREPROCESSOR_BASE_URL: validations.string().uri().required(),
+  EDGE_GATEWAY_ID: validations.string().required(),
   HOST: validations.string().hostname().required(),
   LOG_LEVEL: validations.string().allow([
     'debug',
