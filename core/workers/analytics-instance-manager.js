@@ -102,9 +102,13 @@ const _startAnalyticsProcessor = (aiid, analyticsProcessorManifest) => {
       _ait[aiid].state = _ait[aiid].processors.some((p) => { return p.state === State.FAILED; }) ?
         State.FAILED : State.STOPPED;
     }).catch((error) => {
-      logger.error(`Something went wrong with analytics processor ${ analyticsProcessorManifest._id }.`, error);
-      _ait[aiid].processors[analyticsProcessorManifest._id].state = State.FAILED;
-      _ait[aiid].state = State.FAILED;
+      if (_ait[aiid].processors[analyticsProcessorManifest._id]) {
+        logger.error(`Something went wrong with analytics processor ${ analyticsProcessorManifest._id }.`, error);
+        _ait[aiid].processors[analyticsProcessorManifest._id].state = State.FAILED;
+        _ait[aiid].state = State.FAILED;
+      } else {
+        logger.debug(`Analytics processor ${ analyticsProcessorManifest._id } was forced to stop.`);
+      }
     });
     _ait[aiid].processors[analyticsProcessorManifest._id].process = p.childProcess;
     _ait[aiid].processors[analyticsProcessorManifest._id].state = State.RUNNING;
