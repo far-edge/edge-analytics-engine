@@ -4,7 +4,6 @@ const env = validations.object({
   API_BASE_URL: validations.string().uri().required(),
   DATA_ROUTER_AND_PREPROCESSOR_BASE_URL: validations.string().uri().required(),
   EDGE_GATEWAY_ID: validations.string().required(),
-  HOST: validations.string().hostname().required(),
   LOG_LEVEL: validations.string().allow([
     'debug',
     'error',
@@ -16,17 +15,16 @@ const env = validations.object({
   MONGODB_HOST: validations.string().hostname().required(),
   MONGODB_NAME: validations.string().required(),
   MONGODB_PASSWORD: validations.string().optional().empty(''),
+  MONGODB_POOL_SIZE: validations.number().required(),
   MONGODB_PORT: validations.number().required(),
   MONGODB_USER: validations.string().optional().empty(''),
-  MONGODB_POOL_SIZE: validations.number().required(),
   NAME: validations.string().required(),
   NODE_ENV: validations.string().allow([
     'development',
     'production',
     'staging',
     'test'
-  ]).required(),
-  PORT: validations.number().required()
+  ]).required()
 }).unknown().required();
 
 module.exports = env;
