@@ -12,7 +12,7 @@ const validations = require('./core/common/validations');
 const { error, value: _env } = validations.validate(process.env, blueprint);
 if (error) {
   logger.error(`The environment is invalid (cause: ${ error.details[0].message }).`);
-  process.exit(1);
+  process.exit(23);
 }
 
 // Load all models.
@@ -39,6 +39,7 @@ mongoose.connect(uri, {
   return AIM.init();
 }).catch((error) => {
   logger.error(`System failed to connect to the database @ ${ uriwa }.`, error);
+  process.exit(42);
 });
 
 // Log more details when the log level is debug.
@@ -53,7 +54,7 @@ if (process.env.LOG_LEVEL === 'debug') {
 // Bind and listen for connections on the given port and host.
 if (!module.parent) {
   app.listen(9999, '0.0.0.0', () => {
-    logger.info(`Server started in ${process.env.NODE_ENV} mode on port ${ process.env.PORT }.`);
+    logger.info(`Server started in ${process.env.NODE_ENV} mode on port 9999.`);
   });
 }
 
